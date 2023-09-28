@@ -38,7 +38,7 @@ def main():
 
     # Loop through each metric and create a radio button selection for scores 1-5
     for metric in metrics:
-        score = st.radio(f"Rate your {metric} today:", [1, 2, 3, 4, 5])  # As of the last update, there's no horizontal=True option in st.radio
+        score = st.radio(f"Rate your {metric} today:", [1, 2, 3, 4, 5],horizontal=True)
         scores[metric] = score
 
     # Text input for Aspiration, Improvement, Realisation, and Gratitude
