@@ -77,10 +77,10 @@ def main():
                 # Append the data
                 if num_rows == 0:
                     # If the sheet is empty, also include the headers
-                    sheet.update(start_cell, [new_df.columns.values.tolist()] + new_df.values.tolist())
+                    sheet.update(start_cell, [df.columns.values.tolist()] + df.values.tolist())
                 else:
                     # Otherwise, just append the data rows
-                    sheet.update(start_cell, new_df.values.tolist())
+                    sheet.update(start_cell, df.values.tolist())
     
                     st.write(f"New data written to sheet: {update_details}")
     
