@@ -82,7 +82,7 @@ def main():
                     # Otherwise, just append the data rows
                     sheet.update(start_cell, df.values.tolist())
     
-                    st.write(f"New data written to sheet: {update_details}")
+                    st.write(f"New data written to sheet")
     
             except Exception as e:
                 st.error(f"An error occurred: {e}")
