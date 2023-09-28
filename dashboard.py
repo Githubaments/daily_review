@@ -26,37 +26,59 @@ data = sheet.get_all_records()
 df = pd.DataFrame(data)
 
 
-st.write(df)
+
+def main():
+    st.title("End of Day Review")
+
+    # List of metrics
+    metrics = ["Sleep", "Water", "Food", "Sun", "Mood", "Productivity", "Satiety", "Learning"]
+
+    # Dictionary to store scores for each metric
+    scores = {}
+
+    # Loop through each metric and create a radio button selection for scores 1-5
+    for metric in metrics:
+        score = st.radio(f"Rate your {metric} today:", [1, 2, 3, 4, 5])
+        scores[metric] = score
+
+    # You can add a button to finalize the review and maybe save/display the results
+    if st.button("Submit Review"):
+        st.write("Review Submitted!")
+        st.write(scores)  # Displaying the scores, you can also save them elsewhere if needed
+
+    # create a new DataFrame with the user input data
+    new_df = pd.DataFrame(scores)
 
 
-user_date = "A"
+    with st.form(key='my_form'):
+        if st.form_submit_button(label="Submit"):
+            try:
+                new_df = new_df.fillna(0)
+    
+                # Get the number of rows that have data
+                num_rows = len(sheet.get_all_values())
+    
+                # Calculate the starting cell for new data (considering the header is only added once)
+                start_cell = f"A{num_rows + 1}" if num_rows > 0 else "A1"
+    
+                # Append the data
+                if num_rows == 0:
+                    # If the sheet is empty, also include the headers
+                    sheet.update(start_cell, [new_df.columns.values.tolist()] + new_df.values.tolist())
+                else:
+                    # Otherwise, just append the data rows
+                    sheet.update(start_cell, new_df.values.tolist())
+    
+                    st.write(f"New data written to sheet: {update_details}")
+    
+            except Exception as e:
+                st.error(f"An error occurred: {e}")
 
-# create a new DataFrame with the user input data
-new_df = pd.DataFrame(user_data)
+if __name__ == "__main__":
+    main()
 
 
-with st.form(key='my_form'):
-    if st.form_submit_button(label="Submit"):
-        try:
-            new_df = new_df.fillna(0)
 
-            # Get the number of rows that have data
-            num_rows = len(sheet.get_all_values())
 
-            # Calculate the starting cell for new data (considering the header is only added once)
-            start_cell = f"A{num_rows + 1}" if num_rows > 0 else "A1"
-
-            # Append the data
-            if num_rows == 0:
-                # If the sheet is empty, also include the headers
-                sheet.update(start_cell, [new_df.columns.values.tolist()] + new_df.values.tolist())
-            else:
-                # Otherwise, just append the data rows
-                sheet.update(start_cell, new_df.values.tolist())
-
-                st.write(f"New data written to sheet: {update_details}")
-
-        except Exception as e:
-            st.error(f"An error occurred: {e}")
 
 
