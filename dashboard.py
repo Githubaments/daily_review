@@ -31,29 +31,40 @@ def main():
     st.title("End of Day Review")
 
     # List of metrics
-    metrics = ["Sleep", "Water", "Food", "Sun", "Mood", "Productivity", "Satiety", "Learning"]
+    metrics = ["Sleep", "Water", "Food", "Satiety", "Sun", "Nature", "Mood", "Social", "Productivity", "Learning"]
 
     # Dictionary to store scores for each metric
     scores = {}
 
     # Loop through each metric and create a radio button selection for scores 1-5
     for metric in metrics:
-        score = st.radio(f"Rate your {metric} today:", [1, 2, 3, 4, 5], horizontal=True)
+        score = st.radio(f"Rate your {metric} today:", [1, 2, 3, 4, 5])  # As of the last update, there's no horizontal=True option in st.radio
         scores[metric] = score
 
-    # You can add a button to finalize the review and maybe save/display the results
-    if st.button("Submit Review"):
-        st.write("Review Submitted!")
-        st.write(scores)  # Displaying the scores, you can also save them elsewhere if needed
+    # Text input for Aspiration, Improvement, Realisation, and Gratitude
+    aspiration = st.text_area("What are your aspirations for the future?")
+    improvement = st.text_area("What could you have improved today?")
+    realisation = st.text_area("What did you realise today?")
+    gratitude = st.text_area("What are you grateful for today?")
 
-    # create a new DataFrame with the user input data
-    new_df = pd.DataFrame(scores)
+    # Creating a dictionary with data
+    data = {
+        'Date': datetime.now().strftime('%Y-%m-%d'),  # Putting date first
+        **scores,  # Unpacking the scores dictionary
+        'Aspiration': aspiration,
+        'Improvement': improvement,
+        'Realisation': realisation,
+        'Gratitude': gratitude
+    }
 
+    df = pd.DataFrame([data], columns=data.keys())  # Creating a single-row dataframe from the data
+
+    # Display the DataFrame on the Streamlit app
+    st.write(df)
 
     with st.form(key='my_form'):
         if st.form_submit_button(label="Submit"):
             try:
-                new_df = new_df.fillna(0)
     
                 # Get the number of rows that have data
                 num_rows = len(sheet.get_all_values())
