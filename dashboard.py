@@ -15,6 +15,9 @@ credentials = service_account.Credentials.from_service_account_info(
 gc = gspread.authorize(credentials)
 
 # Open the Google Sheet by name
+
+st.write(private_gsheets_url) 
+
 sheet = gc.open('Daily Review').sheet1
 
 # Read the data from the sheet
