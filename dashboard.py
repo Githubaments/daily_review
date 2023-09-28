@@ -16,9 +16,7 @@ gc = gspread.authorize(credentials)
 
 # Open the Google Sheet by name
 
-st.write(private_gsheets_url) 
-
-sheet = gc.open('Daily Review').sheet1
+sheet = gc.open('TestTest').sheet1
 
 # Read the data from the sheet
 data = sheet.get_all_records()
