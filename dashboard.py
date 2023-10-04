@@ -44,15 +44,24 @@ def main():
         scores[metric] = score
 
     # Text input for Aspiration, Improvement, Realisation, and Gratitude
+    results = st.text_area("What are your results today?")
+    ideas = st.text_area("What are your ideas for tomorrow?")
+    goals = st.text_area("What are your goals for next week")
     aspiration = st.text_area("What are your aspirations for the future?")
     improvement = st.text_area("What could you have improved today?")
     realisation = st.text_area("What did you realise today?")
     gratitude = st.text_area("What are you grateful for today?")
+    
+    
 
     # Creating a dictionary with data
     data = {
         'Date': datetime.now().strftime('%Y-%m-%d'),  # Putting date first
         **scores,  # Unpacking the scores dictionary
+        
+        'Results': results,
+        'Ideas': ideas,
+        'Goals': goals,
         'Aspiration': aspiration,
         'Improvement': improvement,
         'Realisation': realisation,
