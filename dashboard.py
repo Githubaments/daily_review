@@ -51,7 +51,9 @@ def main():
     improvement = st.text_area("What could you have improved today?")
     realisation = st.text_area("What did you realise today?")
     gratitude = st.text_area("What are you grateful for today?")
-    
+    comliments_given = st.text_area("Compliments recieved?")
+    comliments_recieved = st.text_area("Compliments given?")
+
     
 
     # Creating a dictionary with data
@@ -65,7 +67,11 @@ def main():
         'Aspiration': aspiration,
         'Improvement': improvement,
         'Realisation': realisation,
-        'Gratitude': gratitude
+        'Gratitude': gratitude,
+        'Comliments Given':comliments_given,
+        'Comliments Recieved':comliments_recieved
+
+        
     }
 
     df = pd.DataFrame([data], columns=data.keys())  # Creating a single-row dataframe from the data
