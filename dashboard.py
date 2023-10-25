@@ -70,7 +70,7 @@ def main():
         'Realisation': realisation,
         'Gratitude': gratitude,
         'Comliments Given':comliments_given,
-        'Comliments Recieved':comliments_recieved
+        'Comliments Recieved':comliments_recieved,
         'Improvement':improve
 
         
