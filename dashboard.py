@@ -45,6 +45,7 @@ def main():
 
     # Text input for Aspiration, Improvement, Realisation, and Gratitude
     results = st.text_area("What are your results today?")
+    learn_today = st.text_area("What did you learn today?")
     ideas = st.text_area("What are your ideas for tomorrow?")
     goals = st.text_area("What are your goals for next week")
     aspiration = st.text_area("What are your aspirations for the future?")
@@ -71,7 +72,8 @@ def main():
         'Gratitude': gratitude,
         'Comliments Given':comliments_given,
         'Comliments Recieved':comliments_recieved,
-        'Improvement':improve
+        'Improvement':improve,
+        'Learn Today' :learn_today
 
         
     }
