@@ -52,6 +52,7 @@ def main():
     improvement = st.text_area("What could you have improved today?")
     realisation = st.text_area("What did you realise today?")
     gratitude = st.text_area("What are you grateful for today?")
+    amazing = st.text_area("Amazing things that happened today?")
     comliments_given = st.text_area("Compliments recieved?")
     comliments_recieved = st.text_area("Compliments given?")
     improve = st.radio("Did you improve today?",['Yes','No'])
@@ -70,6 +71,7 @@ def main():
         'Improvement': improvement,
         'Realisation': realisation,
         'Gratitude': gratitude,
+        'Amazing':amazing,
         'Comliments Given':comliments_given,
         'Comliments Recieved':comliments_recieved,
         'Improvement':improve,
